@@ -1,8 +1,15 @@
 "use client";
 
-import { useUser } from "@auth0/nextjs-auth0/client";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 
-export default function Home() {
+const Home = () => {
   const { user } = useUser();
-  return <span>Hello world</span>;
-}
+  return (
+    <div>
+      <span>Hello world</span>
+      <a href="/api/auth/logout">Logout</a>;
+    </div>
+  );
+};
+
+export default withPageAuthRequired(Home, { returnTo: "/login" });
