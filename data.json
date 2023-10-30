@@ -1,0 +1,23 @@
+{
+  "delivery": {
+    "amount": 200,
+    "deadline": "2018-05-30T00:00:00.000Z",
+    "orders": [
+      {
+        "id": 1,
+        "userId": "asdausdhasu21",
+        "status": "pending",
+        "createdAt": "2018-05-30T00:00:00.000Z",
+        "updatedAt": "2018-05-30T00:00:00.000Z",
+        "deliveryId": 1,
+        "catagories": [
+          {
+            "name": "meat",
+
+            "items": [{ "id": 1, "name": "meat", "amount": 20 }]
+          }
+        ]
+      }
+    ]
+  }
+}
