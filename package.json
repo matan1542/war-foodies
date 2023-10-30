@@ -29,6 +29,7 @@
     "@types/prop-types": "^15.7.9",
     "@types/scheduler": "^0.16.5",
     "install": "^0.13.0",
-    "npm": "^10.2.1"
+    "npm": "^10.2.1",
+    "prettier": "3.0.3"
   }
 }
