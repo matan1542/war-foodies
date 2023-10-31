@@ -6,30 +6,35 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed-db": "npx dotenv -e .env.local -- npx tsx ./scripts/seed.ts",
+    "migrate-db": "npx dotenv -e .env.local -- npx prisma migrate dev",
+    "drop-db": "npx dotenv -e .env.local -- npx prisma migrate reset"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.2.0",
+    "@prisma/client": "^5.5.2",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
     "eslint": "8.52.0",
     "eslint-config-next": "14.0.0",
     "next": "14.0.0",
-    "pg": "^8.11.3",
     "postcss": "8.4.31",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.5",
-    "typeorm": "0.3.14",
     "typescript": "5.2.2"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",
     "@types/prop-types": "^15.7.9",
     "@types/scheduler": "^0.16.5",
+    "dotenv-cli": "^7.3.0",
     "install": "^0.13.0",
     "npm": "^10.2.1",
-    "prettier": "3.0.3"
+    "prettier": "3.0.3",
+    "prisma": "^5.5.2",
+    "tsx": "^3.14.0"
   }
 }
