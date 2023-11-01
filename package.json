@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed-db": "npx dotenv -e .env.local -- npx tsx ./scripts/seed.ts",
+    "db-studio": "npx dotenv -e .env.local -- npx prisma studio",
+    "seed-db": "npx dotenv -e .env.local -- npx tsx ./src/scripts/seed.ts",
     "migrate-db": "npx dotenv -e .env.local -- npx prisma migrate dev",
-    "drop-db": "npx dotenv -e .env.local -- npx prisma migrate reset"
+    "clear-db": "npx dotenv -e .env.local -- npx prisma migrate reset"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.2.0",
