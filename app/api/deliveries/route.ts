@@ -1,4 +1,5 @@
 import { db } from "@/src/db";
+import { getSession } from "@auth0/nextjs-auth0";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
@@ -33,6 +34,10 @@ export const GET = async () => {
 };
 
 export const POST = async (request: Request) => {
+  const session = await getSession();
+  if (!session?.user.isAdmin) {
+    return new NextResponse("Access Denied", { status: 403 });
+  }
   const body = await request.json();
 
   const delivery = await db.delivery.create({ data: body });
@@ -40,6 +45,11 @@ export const POST = async (request: Request) => {
 };
 
 export const DELETE = async (request: Request) => {
+  const session = await getSession();
+  if (!session?.user.isAdmin) {
+    return new NextResponse("Access Denied", { status: 403 });
+  }
+
   const { id } = await request.json();
   await db.delivery.delete({ where: { id } });
 
