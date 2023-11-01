@@ -49,6 +49,9 @@ async function main() {
     data: {
       amount: 500,
       deadline: new Date(),
+      items: {
+        connect: items.map((i) => ({ id: i.id })),
+      },
       orders: {
         create: [
           {

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -28,49 +25,51 @@ model Category {
 }
 
 model Item {
-  id         String   @id @default(uuid())
+  id         String     @id @default(uuid())
   name       String
-  category   Category @relation(fields: [categoryId], references: [id])
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
   categoryId String
-  Amount     Amount[]
-}
-
-enum OrderStatus {
-  PENDING
-  DELIVERED
-  CANCELED
+  amount     Amount[]
+  category   Category   @relation(fields: [categoryId], references: [id])
+  deliveries Delivery[] @relation("DeliveryToItem")
 }
 
 model Order {
   id         String      @id @default(uuid())
-  user       User        @relation(fields: [userId], references: [id])
-  delivery   Delivery    @relation(fields: [deliveryId], references: [id])
   status     OrderStatus @default(PENDING)
-  amounts    Amount[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
   userId     String
   deliveryId String
+  amounts    Amount[]
+  delivery   Delivery    @relation(fields: [deliveryId], references: [id])
+  user       User        @relation(fields: [userId], references: [id])
 }
 
 model Amount {
   id        String   @id @default(uuid())
-  item      Item     @relation(fields: [itemId], references: [id])
-  order     Order    @relation(fields: [orderId], references: [id])
   amount    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   itemId    String
   orderId   String
+  item      Item     @relation(fields: [itemId], references: [id])
+  order     Order    @relation(fields: [orderId], references: [id])
 }
 
 model Delivery {
   id        String   @id @default(uuid())
   amount    Int
   deadline  DateTime
-  orders    Order[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  orders    Order[]
+  items     Item[]   @relation("DeliveryToItem")
+}
+
+enum OrderStatus {
+  PENDING
+  DELIVERED
+  CANCELED
 }

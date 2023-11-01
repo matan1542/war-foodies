@@ -20,34 +20,23 @@ export const GET = async () => {
     },
   };
 
-  const withOrders = {
+  const args = {
     include: {
       orders: withAmounts,
+      items: withCategory,
     },
   };
 
-  const data = await db.delivery.findMany(withOrders);
-
-  const deliveries = data.map((delivery) => {
-    const amounts = delivery.orders.flatMap((o) => o.amounts);
-    const categories = {} as Record<string, any>;
-
-    for (const amount of amounts) {
-      const { name: categoryName } = amount.item.category;
-      const { name: itemName } = amount.item;
-
-      const category = categories[categoryName] || {};
-      const items = category[itemName] || [];
-      items.push(amount);
-
-      category[itemName] = items;
-      categories[categoryName] = category;
-    }
-
-    return { ...delivery, categories };
-  });
+  const deliveries = await db.delivery.findMany(args);
 
   return NextResponse.json({ deliveries });
+};
+
+export const POST = async (request: Request) => {
+  const body = await request.json();
+
+  const delivery = await db.delivery.create({ data: body });
+  return NextResponse.json({ delivery });
 };
 
 export const DELETE = async (request: Request) => {
