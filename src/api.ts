@@ -1,5 +1,5 @@
 import { Delivery, Order } from "@prisma/client";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import useSWR from "swr";
 
 export const http = axios.create({ baseURL: "/api" });
