@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed-db": "npx dotenv -e .env.local -- npx tsx ./scripts/seed.ts",
+    "db-studio": "npx dotenv -e .env.local -- npx prisma studio",
+    "seed-db": "npx dotenv -e .env.local -- npx tsx ./src/scripts/seed.ts",
     "migrate-db": "npx dotenv -e .env.local -- npx prisma migrate dev",
-    "drop-db": "npx dotenv -e .env.local -- npx prisma migrate reset"
+    "clear-db": "npx dotenv -e .env.local -- npx prisma migrate reset"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.2.0",
@@ -22,6 +23,7 @@
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
+    "axios": "^1.6.0",
     "eslint": "8.52.0",
     "eslint-config-next": "14.0.0",
     "next": "14.0.0",
@@ -30,6 +32,7 @@
     "react-dom": "18.2.0",
     "sass": "^1.69.5",
     "styled-components": "^6.1.0",
+    "swr": "^2.2.4",
     "tailwindcss": "3.3.5",
     "typescript": "5.2.2"
   },
