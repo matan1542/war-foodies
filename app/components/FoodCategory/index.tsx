@@ -8,15 +8,16 @@ import {
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { THEME_COLORS } from "@/constants";
-import { ItemFrontend } from "@/types/api";
+import { Item } from "@/types/api";
 import FoodItem from "../FoodItem";
+import { TransformedCategory } from "@/types/ui";
 
-interface FoodCatagoryProps {
-  catagoryName: string;
-  items: ItemFrontend;
+interface Props {
+  category: TransformedCategory;
+  items: Item[];
 }
 
-const FoodCatagory = ({ catagoryName, items }: FoodCatagoryProps) => {
+const FoodCatagory = ({ category }: Props) => {
   return (
     <Box
       sx={{
@@ -58,7 +59,7 @@ const FoodCatagory = ({ catagoryName, items }: FoodCatagoryProps) => {
             fontWeight={700}
             fontSize={32}
           >
-            {catagoryName}
+            {category.name}
           </Typography>
         </AccordionSummary>
         <AccordionDetails
@@ -68,11 +69,11 @@ const FoodCatagory = ({ catagoryName, items }: FoodCatagoryProps) => {
             paddingBottom: "10px",
           }}
         >
-          {Object.entries(items).map(([itemName, item]) => {
-            return (
-              <FoodItem amount={item.amount} id={item.id} name={itemName} />
-            );
-          })}
+          {Object.entries(category.itemsAndAmounts).map(
+            ([id, { item, amounts }]) => {
+              return <FoodItem key={item.id} amounts={amounts} item={item} />;
+            }
+          )}
         </AccordionDetails>
       </Accordion>
     </Box>

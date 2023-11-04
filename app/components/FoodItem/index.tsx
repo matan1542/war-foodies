@@ -1,12 +1,17 @@
-import { Delivery, Item } from "@/types/api";
+import { Item } from "@/types/api";
+import { Amount } from "@prisma/client";
 
-interface FoodItemProps extends Item {}
+interface FoodItemProps {
+  item: Item;
+  amounts: Amount[];
+}
 
-const FoodItem = ({ amount, name, id }: FoodItemProps) => {
+const FoodItem = ({ item, amounts }: FoodItemProps) => {
+  const totalAmount = amounts.reduce((acc, amount) => acc + amount.amount, 0);
   return (
     <div>
-      <div>{name}</div>
-      <div>{amount}</div>
+      <div>{item.name}</div>
+      <div>{totalAmount}</div>
     </div>
   );
 };

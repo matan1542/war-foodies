@@ -2,7 +2,6 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { DeliveryProvider } from "./components/Delivery/deliveryProvider";
 import { Noto_Sans_Hebrew } from "next/font/google";
 
 const NotoSansHebrew = Noto_Sans_Hebrew({
@@ -24,9 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <UserProvider>
-        <DeliveryProvider>
-          <body className={NotoSansHebrew.className}>{children}</body>
-        </DeliveryProvider>
+        <body className={NotoSansHebrew.className}>{children}</body>
       </UserProvider>
     </html>
   );

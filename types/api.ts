@@ -4,7 +4,11 @@ export type Item = Prisma.ItemGetPayload<{
   include: { category: true };
 }>;
 
-export type Catagory = Prisma.CategoryGetPayload<{
+export type Amount = Prisma.AmountGetPayload<{
+  include: { item: { include: { category: true } } };
+}>;
+
+export type Category = Prisma.CategoryGetPayload<{
   include: { items: true };
 }>;
 
@@ -13,27 +17,14 @@ export type Order = Prisma.OrderGetPayload<{
 }>;
 
 export type Delivery = Prisma.DeliveryGetPayload<{
-  include: { orders: true; items: true };
-}>;
-
-export interface ItemFrontend {
-  [key: string]: {
-    id: string;
-    amount: number;
+  include: {
+    orders: {
+      include: {
+        amounts: { include: { item: { include: { category: true } } } };
+      };
+    };
+    items: {
+      include: { category: true };
+    };
   };
-}
-
-export interface CatagoryFrontend {
-  [key: string]: ItemFrontend;
-}
-
-export interface OrderFrontend {
-  catagories: CatagoryFrontend;
-}
-
-export interface DeliveryFrontend {
-  id: string;
-  amount: number;
-  deadline: Date;
-  order: OrderFrontend;
-}
+}>;

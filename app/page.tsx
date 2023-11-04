@@ -4,20 +4,44 @@ import { auth0UserContext } from "@/types/userContext";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Layout from "./components/Layout";
 import Deliveries from "./components/Deliveries";
-import { dataDevlivries } from "../data";
-import { useContext, useEffect } from "react";
-import { DeliveryContext } from "./components/Delivery/deliveryProvider";
+import { dataDeliveries } from "../data";
 import DeliveryInfo from "./components/DeliveryInfo";
+import { Amount, Delivery, Item } from "@/types/api";
+import { TransformedCategory, TransformedDelivery } from "@/types/ui";
 
+const transformDeliveries = (deliveries: Delivery[]): TransformedDelivery[] => {
+  return deliveries.map((delivery) => {
+    const { items, orders } = delivery;
+    const item2amounts = orders
+      .flatMap((o) => o.amounts)
+      .reduce(
+        (acc, amount) => {
+          const amounts = acc[amount.item.id] || [];
+          amounts.push(amount);
+          return { ...acc, [amount.item.id]: amounts };
+        },
+        {} as Record<string, Amount[]>
+      );
+    const categories = {} as Record<string, TransformedCategory>;
+
+    for (const item of items) {
+      const amounts = item2amounts[item.id] || [];
+      const category = categories[item.category.id] || item.category;
+      const itemsAndAmounts = category.itemsAndAmounts || {};
+      itemsAndAmounts[item.id] = {
+        amounts,
+        item,
+      };
+      category.itemsAndAmounts = itemsAndAmounts;
+      categories[item.category.id] = category;
+    }
+
+    return { ...delivery, categories };
+  });
+};
 const Home = () => {
-  const { deliveries, handleDeliveries } = useContext(DeliveryContext);
   const { user } = useUser() as auth0UserContext;
-
-  useEffect(() => {
-    handleDeliveries(dataDevlivries);
-  }, []);
-
-  if (!deliveries) return <div></div>;
+  const deliveries = transformDeliveries(dataDeliveries);
 
   return (
     <Layout>

@@ -1,20 +1,18 @@
-import { DeliveryFrontend } from "@/types/api";
 import { Box } from "@mui/material";
-import FoodCatagory from "../FoodCatagory";
+import FoodCategory from "../FoodCategory";
+import { TransformedDelivery } from "@/types/ui";
 
-interface DeliveryProps {
-  delivery: DeliveryFrontend;
+interface Props {
+  delivery: TransformedDelivery;
 }
 
-const Delivery = ({ delivery }: DeliveryProps) => {
-  const catagories = delivery.order.catagories;
-  // MATAN-TODO - replace with loader component
-
+const Delivery = ({ delivery }: Props) => {
+  const { categories } = delivery;
   if (!delivery) return <div>...loading</div>;
   return (
     <Box>
-      {Object.entries(catagories).map(([catagoryName, items]) => {
-        return <FoodCatagory catagoryName={catagoryName} items={items} />;
+      {Object.entries(categories).map(([categoryId, category]) => {
+        return <FoodCategory key={categoryId} category={category} />;
       })}
     </Box>
   );
