@@ -21,7 +21,7 @@ model Category {
   type      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Item      Item[]
+  items     Item[]
 }
 
 model Item {
@@ -30,7 +30,7 @@ model Item {
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   categoryId String
-  amount     Amount[]
+  amounts    Amount[]
   category   Category   @relation(fields: [categoryId], references: [id])
   deliveries Delivery[] @relation("DeliveryToItem")
 }

@@ -8,7 +8,7 @@ import {
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { THEME_COLORS } from "@/constants";
-import { ItemFrontend } from "@/types/delivery";
+import { ItemFrontend } from "@/types/api";
 import FoodItem from "../FoodItem";
 
 interface FoodCatagoryProps {

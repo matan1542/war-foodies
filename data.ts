@@ -1,4 +1,4 @@
-import { Delivery } from "./types/delivery";
+import { Delivery } from "./types/api";
 export const dataDevlivries: Delivery[] = [
   {
     id: "1",

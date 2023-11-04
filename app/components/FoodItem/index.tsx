@@ -1,4 +1,4 @@
-import { Delivery, Item } from "@/types/delivery";
+import { Delivery, Item } from "@/types/api";
 
 interface FoodItemProps extends Item {}
 

@@ -1,4 +1,4 @@
-import { DeliveryFrontend } from "@/types/delivery";
+import { DeliveryFrontend } from "@/types/api";
 import { Box } from "@mui/material";
 import FoodCatagory from "../FoodCatagory";
 

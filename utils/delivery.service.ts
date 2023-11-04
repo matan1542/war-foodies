@@ -1,4 +1,4 @@
-import { Delivery, DeliveryFrontend } from "@/types/delivery";
+import { Delivery, DeliveryFrontend } from "@/types/api";
 
 export function parseDeliveryStructure(delivery: Delivery) {
   let deliveryMap: DeliveryFrontend = {
