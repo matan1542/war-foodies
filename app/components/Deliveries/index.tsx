@@ -1,7 +1,11 @@
 import { TransformedDelivery } from "@/types/ui";
 import Delivery from "../Delivery";
 
-const Deliveries = ({ deliveries }: { deliveries: TransformedDelivery[] }) => {
+interface Props {
+  deliveries: TransformedDelivery[];
+}
+
+const Deliveries = ({ deliveries }: Props) => {
   if (!deliveries) return <div>...loading</div>;
 
   return (

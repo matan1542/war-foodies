@@ -1,12 +1,12 @@
 import { Item } from "@/types/api";
 import { Amount } from "@prisma/client";
 
-interface FoodItemProps {
+interface Props {
   item: Item;
   amounts: Amount[];
 }
 
-const FoodItem = ({ item, amounts }: FoodItemProps) => {
+const FoodItem = ({ item, amounts }: Props) => {
   const totalAmount = amounts.reduce((acc, amount) => acc + amount.amount, 0);
   return (
     <div>
