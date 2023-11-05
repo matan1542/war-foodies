@@ -17,7 +17,8 @@ model User {
 
 model Category {
   id        String   @id @default(uuid())
-  name      String
+  enName    String
+  heName    String
   type      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -26,7 +27,8 @@ model Category {
 
 model Item {
   id         String     @id @default(uuid())
-  name       String
+  enName     String
+  heName     String
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   categoryId String

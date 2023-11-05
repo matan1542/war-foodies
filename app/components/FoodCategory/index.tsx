@@ -59,7 +59,7 @@ const FoodCatagory = ({ category }: Props) => {
             fontWeight={700}
             fontSize={32}
           >
-            {category.name}
+            {category.heName}
           </Typography>
         </AccordionSummary>
         <AccordionDetails

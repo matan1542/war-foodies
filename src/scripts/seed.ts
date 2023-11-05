@@ -11,15 +11,18 @@ async function main() {
   await prisma.category.createMany({
     data: [
       {
-        name: "meat",
+        enName: "meat",
+        heName: "בשר",
         type: "main-course",
       },
       {
-        name: "chicken",
+        enName: "chicken",
+        heName: "עוף",
         type: "main-course",
       },
       {
-        name: "vegetable",
+        enName: "vegetarian",
+        heName: "צמחוני",
         type: "main-course",
       },
     ],
@@ -29,16 +32,19 @@ async function main() {
   await prisma.item.createMany({
     data: [
       {
-        name: "meatballs",
-        categoryId: categories.find((c) => c.name === "meat")!.id,
+        enName: "meatballs",
+        heName: "קציצות",
+        categoryId: categories.find((c) => c.enName === "meat")!.id,
       },
       {
-        name: "beaf",
-        categoryId: categories.find((c) => c.name === "meat")!.id,
+        enName: "beaf",
+        heName: "בקר",
+        categoryId: categories.find((c) => c.enName === "meat")!.id,
       },
       {
-        name: "pullets",
-        categoryId: categories.find((c) => c.name === "chicken")!.id,
+        enName: "pullets",
+        heName: "פרגיות",
+        categoryId: categories.find((c) => c.enName === "chicken")!.id,
       },
     ],
   });
@@ -63,7 +69,7 @@ async function main() {
                   amount: 20,
                   item: {
                     connect: {
-                      id: items.find((i) => i.name === "meatballs")!.id,
+                      id: items.find((i) => i.enName === "meatballs")!.id,
                     },
                   },
                 },
@@ -71,7 +77,7 @@ async function main() {
                   amount: 50,
                   item: {
                     connect: {
-                      id: items.find((i) => i.name === "beaf")!.id,
+                      id: items.find((i) => i.enName === "beaf")!.id,
                     },
                   },
                 },
@@ -79,7 +85,7 @@ async function main() {
                   amount: 100,
                   item: {
                     connect: {
-                      id: items.find((i) => i.name === "pullets")!.id,
+                      id: items.find((i) => i.enName === "pullets")!.id,
                     },
                   },
                 },
@@ -95,7 +101,7 @@ async function main() {
                   amount: 20,
                   item: {
                     connect: {
-                      id: items.find((i) => i.name === "meatballs")!.id,
+                      id: items.find((i) => i.enName === "meatballs")!.id,
                     },
                   },
                 },
@@ -103,7 +109,7 @@ async function main() {
                   amount: 50,
                   item: {
                     connect: {
-                      id: items.find((i) => i.name === "beaf")!.id,
+                      id: items.find((i) => i.enName === "beaf")!.id,
                     },
                   },
                 },
@@ -111,7 +117,7 @@ async function main() {
                   amount: 100,
                   item: {
                     connect: {
-                      id: items.find((i) => i.name === "pullets")!.id,
+                      id: items.find((i) => i.enName === "pullets")!.id,
                     },
                   },
                 },

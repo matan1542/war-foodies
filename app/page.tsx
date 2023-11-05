@@ -45,6 +45,7 @@ const Home = () => {
 
   return (
     <Layout>
+      <span>Hi {user.name}</span>
       <DeliveryInfo />
       <Deliveries deliveries={deliveries} />
     </Layout>

@@ -10,7 +10,7 @@ const FoodItem = ({ item, amounts }: Props) => {
   const totalAmount = amounts.reduce((acc, amount) => acc + amount.amount, 0);
   return (
     <div>
-      <div>{item.name}</div>
+      <div>{item.heName}</div>
       <div>{totalAmount}</div>
     </div>
   );
