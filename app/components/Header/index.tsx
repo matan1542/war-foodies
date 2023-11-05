@@ -15,7 +15,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { auth0UserContext } from "@/types/userContext";
+import { Auth0UserContext } from "@/types/userContext";
 
 const drawerWidth = 240;
 

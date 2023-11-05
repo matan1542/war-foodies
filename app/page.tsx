@@ -1,6 +1,6 @@
 "use client";
 
-import { auth0UserContext } from "@/types/userContext";
+import { Auth0UserContext } from "@/types/userContext";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Layout from "./components/Layout";
 import Deliveries from "./components/Deliveries";
@@ -40,7 +40,7 @@ const transformDeliveries = (deliveries: Delivery[]): TransformedDelivery[] => {
   });
 };
 const Home = () => {
-  const { user } = useUser() as auth0UserContext;
+  const { user } = useUser() as Auth0UserContext;
   const deliveries = transformDeliveries(dataDeliveries);
 
   return (
