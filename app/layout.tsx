@@ -2,8 +2,13 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Noto_Sans_Hebrew } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const NotoSansHebrew = Noto_Sans_Hebrew({
+  subsets: ["hebrew"],
+  weight: ["400", "700"],
+  variable: "--font-Noto_Sans_Hebrew_Regular",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" dir="rtl">
       <UserProvider>
-        <body className={inter.className}>{children}</body>
+        <body className={NotoSansHebrew.className}>{children}</body>
       </UserProvider>
     </html>
   );
