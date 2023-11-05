@@ -13,7 +13,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import Link from "next/link";
+import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Auth0UserContext } from "@/types/userContext";
 
@@ -75,7 +75,7 @@ export default function PersistentDrawerRight() {
   const [menuItems, setMenuItems] = React.useState(menuItemsTemplate);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const { user } = useUser() as auth0UserContext;
+  const { user } = useUser() as Auth0UserContext;
 
   React.useEffect(() => {
     let menuItemsCopy = [...menuItemsTemplate];
@@ -112,7 +112,12 @@ export default function PersistentDrawerRight() {
             onClick={handleDrawerOpen}
             sx={{ ...(open && { display: "none" }) }}
           >
-            <img src="/images/bars.svg" alt="bars menu" />
+            <Image
+              src="/images/bars.svg"
+              width={28}
+              height={26}
+              alt="bars menu"
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -141,7 +146,7 @@ export default function PersistentDrawerRight() {
         <Divider />
         <List>
           {menuItems.map((item) => (
-            <Link href={item.href} key={item.name}>
+            <a href={item.href} key={item.name}>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemText
@@ -150,7 +155,7 @@ export default function PersistentDrawerRight() {
                   />
                 </ListItemButton>
               </ListItem>
-            </Link>
+            </a>
           ))}
         </List>
       </Drawer>
